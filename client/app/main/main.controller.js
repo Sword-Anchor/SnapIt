@@ -11,8 +11,9 @@ angular.module('snapItApp')
     $scope.searchTxt = '';
     $scope.searchDate = true;
     $scope.isCollapsed = false;
+    $scope.userEmail = Auth.getUserEmail();
 
-    $http.get('/api/things/getItems').success(function(pics) {
+    $http.get('/api/things/getItems/?email='+ $scope.userEmail).success(function(pics) {
       $scope.pics = pics;
       socket.syncUpdates('thing', $scope.pics);
       $scope.pics.forEach(function(item){
@@ -61,7 +62,7 @@ angular.module('snapItApp')
 
     $scope.$watch('searchTxt',function(val){
       if (val === '') {
-        $http.get('/api/things/getItems').success(function(pics) {
+        $http.get('/api/things/getItems?email='+ $scope.userEmail).success(function(pics) {
           $scope.pics = pics;
           socket.syncUpdates('thing', $scope.pics);
           $scope.pics.forEach(function(item){

@@ -141,6 +141,13 @@ angular.module('snapItApp')
        */
       getToken: function() {
         return $cookieStore.get('token');
+      },
+
+      /**
+       * Get logged in user email
+       */
+      getUserEmail: function() {
+        return currentUser['email'];
       }
     };
   });
