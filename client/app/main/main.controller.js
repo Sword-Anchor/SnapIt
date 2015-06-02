@@ -107,4 +107,8 @@ angular.module('snapItApp')
       $http.delete('/api/things/' + thing._id);
     };
 
+    $scope.upVote = function(thing) {
+      thing.upVotes++;
+    };
+    
   }]);

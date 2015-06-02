@@ -11,7 +11,8 @@ var ThingSchema = new Schema({
   email: String, 
   mediaType: String,
   createTime: Number,
-  createDate: Date
+  createDate: Date,
+  upVotes: Number
 });
 
 module.exports = mongoose.model('Thing', ThingSchema);

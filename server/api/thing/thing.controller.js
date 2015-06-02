@@ -25,6 +25,7 @@ exports.create = function(req, res) {
   message.email = 'ratracegrad@gmail.com';
   message.createTime = Date.now();
   message.createDate = new Date();
+  message.upVotes = 0;
   message.save(function () {
     res.send(req.body);
   });
