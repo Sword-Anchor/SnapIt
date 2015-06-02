@@ -32,7 +32,7 @@
         <div ng-if="isSelection(pic.mediaType)" class="selectionText">{{pic.description.substr(0,300)}}</div>
         <div ng-class="{titleClass: showImage(pic.mediaType) , selectionTitle: isSelection(pic.mediaType), pageTitle : isPage(pic.mediaType), linkTitle : isLink(pic.mediaType) }">{{pic.title}}</div></a>
         <div class="social">
-          <i class="fa fa-thumbs-o-up thumbLike" ng-click="addLike()"></i><span class="likeCount">XX</span>
+          <i class="fa fa-thumbs-o-up thumbLike" ng-click="upVote(pic)"></i><span class="likeCount">{{pic.upVotes}}</span>
           <i class="fa fa-trash-o pull-right trashCan" ng-click="deleteSnapit(pic)"></i>
         </div> 
     </li>
