@@ -2,9 +2,9 @@
 
 angular.module('snapItApp')
   .controller('LoginCtrl', function ($scope, Auth, $location, $window) {
-    // if (Auth.isLoggedIn()){
-    //   $location.path('/main');
-    // }
+    if (Auth.isLoggedIn()){
+      $location.path('/main');
+    }
 
     $scope.user = {};
     $scope.errors = {};

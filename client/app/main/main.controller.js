@@ -103,4 +103,8 @@ angular.module('snapItApp')
       $scope.searchDate = !$scope.searchDate;
     };
 
+    $scope.deleteSnapit = function(thing) {
+      $http.delete('/api/things/' + thing._id);
+    };
+
   }]);
