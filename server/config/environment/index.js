@@ -42,15 +42,17 @@ var all = {
   },
 
   facebook: {
-    clientID:     process.env.FACEBOOK_ID || 'id',
-    clientSecret: process.env.FACEBOOK_SECRET || 'secret',
-    callbackURL:  (process.env.DOMAIN || '') + '/auth/facebook/callback'
+    clientID:     process.env.FACEBOOK_ID || '914820991913946',
+    clientSecret: process.env.FACEBOOK_SECRET || 'efced9942eb49f5bd5064c5b1b57d356',
+    // callbackURL:  (process.env.DOMAIN || '') + '/auth/facebook/callback'
+    callbackURL: 'http://local.host:9000/auth/facebook/callback'
   },
 
   twitter: {
-    clientID:     process.env.TWITTER_ID || 'id',
-    clientSecret: process.env.TWITTER_SECRET || 'secret',
-    callbackURL:  (process.env.DOMAIN || '') + '/auth/twitter/callback'
+    clientID:     process.env.TWITTER_ID || 'aJXH1rBZ9MShuskTCvqtXOyW5',
+    clientSecret: process.env.TWITTER_SECRET || 'rxgcSqOhWOCDKGjmXiNGTMUevzxYe7HMtD025aThbMeJJ4CgMI',
+    // callbackURL:  (process.env.DOMAIN || '') + '/auth/twitter/callback'
+    callbackURL: 'http://local.host:9000/auth/twitter/callback'
   },
 
 };
