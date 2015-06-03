@@ -33,14 +33,16 @@ exports.create = function(req, res) {
 
 // This is for the blog list urls
 exports.createRss = function(req, res) {
-  console.log("Adding the RSS feed was succesful");
-  //res.send(200);
+  console.log("Inside createRss function")
+
   var array = req.body.feedArray;
-  console.log(req.body.feedArray);
+  var sendResponseBack = false;
+  var messagesArray = [];
+
   for (var i = 0; i < array.length; i++) {
     var feedObject = array[i];
     var media, url, title, description;
-    var message = new Thing();
+    var message = {};
     message.mediaType = "rssFeed";
     message.media = "";
     message.url = feedObject.link;
@@ -49,10 +51,26 @@ exports.createRss = function(req, res) {
     message.email = 'ratracegrad@gmail.com';
     message.createTime = Date.now();
     message.createDate = new Date();
-    message.save(function () {
-      res.send(200);
-   });
+     messagesArray.push(message);
+    if (i === array.length - 1){
+      sendResponseBack = true;
+    }
+  
   }
+    var onBulkInsert = function(err, myDocuments) {
+      if (err) {
+        console.log("the documents were not inserted");
+        console.log("Error is :" + err);
+         return handleError(res, err); 
+      }
+      else {
+       res.send(200);
+       console.log('%userCount users were inserted!', myDocuments.length)
+      }
+  }
+    console.log("Messages array is " + messagesArray);
+    Thing.collection.insert(messagesArray, onBulkInsert);
+    
 };
 
 

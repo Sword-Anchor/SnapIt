@@ -107,12 +107,12 @@ exports.addUrl = function(req, res, next) {
       if (!user.rssUrls){
         user.rssUrls = [];
       }
-      console.log(user);
-      console.log("Found the user :" + user);
-      console.log("User urls are :" + user.rssUrls);
       user.rssUrls.push(req.body.url);
       user.save(function(err) {
-        if (err) return validationError(res, err);
+        if (err) {
+          return validationError(res, err);
+        }
+        console.log("Res was succesful");
         res.send(200);
       });
    });

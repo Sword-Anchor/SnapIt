@@ -11,7 +11,7 @@ router.get('/:id', controller.show);
 router.post('/', controller.create);
 router.put('/:id', controller.update);
 router.patch('/:id', controller.update);
-router.post('/addUrls', controller.createRss);
+router.post('/addFeeds', controller.createRss);
 router.delete('/:id', controller.destroy);
 
 module.exports = router;
