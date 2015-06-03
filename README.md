@@ -4,9 +4,9 @@
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Siddharth Sukumar
+  - __Scrum Master__: Vinaya Gopisetti
+  - __Development Team Members__: Jennifer Bland, Vincent Nocera
 
 ## Table of Contents
 
