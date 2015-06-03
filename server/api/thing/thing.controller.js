@@ -31,9 +31,9 @@ exports.create = function(req, res) {
   });
 };
 
-// This is for the blog list urls
+// This is for the blog list urls, the request passes in an array of 
+// articles from a particular blog
 exports.createRss = function(req, res) {
-  console.log("Inside createRss function")
 
   var array = req.body.feedArray;
   var sendResponseBack = false;
@@ -51,24 +51,19 @@ exports.createRss = function(req, res) {
     message.email = 'mike@abc.com';
     message.createTime = Date.now();
     message.createDate = new Date();
-     messagesArray.push(message);
-    if (i === array.length - 1){
-      sendResponseBack = true;
-    }
+    messagesArray.push(message);
   
   }
     var onBulkInsert = function(err, myDocuments) {
       if (err) {
-        console.log("the documents were not inserted");
-        console.log("Error is :" + err);
-         return handleError(res, err); 
+        return handleError(res, err); 
       }
       else {
-       res.send(200);
-       console.log('%userCount users were inserted!', myDocuments.length)
+        res.send(200);
+        console.log('%userCount users were inserted!', myDocuments.length)
       }
   }
-    console.log("Messages array is " + messagesArray);
+    // does a bulk save on all the array items
     Thing.collection.insert(messagesArray, onBulkInsert);
     
 };

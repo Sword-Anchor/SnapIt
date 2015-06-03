@@ -67,6 +67,7 @@ angular.module('snapItApp')
     console.log('loading feeds...');
 
 
+
     this.get = function(url, email) {
   
       FeedService.parseFeed(url)
@@ -81,6 +82,7 @@ angular.module('snapItApp')
            });
         var feed = res.data.responseData.feed;
         deferred.resolve(feed);
+
           // feedVar = res.data.responseData.feed;
           // feeds.push(feedVar);
           // console.log(feedVar);
