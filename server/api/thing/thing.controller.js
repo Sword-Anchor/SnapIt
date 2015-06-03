@@ -15,6 +15,7 @@ var Thing = require('./thing.model');
 // Save from chrome extension snapIt
 exports.create = function(req, res) {
   var media, url, title, description;
+  console.log("The Request query is " + req.query.mediaType);
 
   var message = new Thing();
   message.mediaType = req.query.mediaType;
@@ -37,6 +38,8 @@ exports.create = function(req, res) {
 exports.createRss = function(req, res) {
 
   var array = req.body.feedArray;
+  var email = req.body.email;
+  console.log("The email is " + email);
   var sendResponseBack = false;
   var messagesArray = [];
 
@@ -49,7 +52,7 @@ exports.createRss = function(req, res) {
     message.url = feedObject.link;
     message.title = feedObject.title;
     message.description = feedObject.contentSnippet;
-    message.email = 'mike@abc.com';
+    message.email = email;
     message.createTime = Date.now();
     message.createDate = new Date();
     messagesArray.push(message);
