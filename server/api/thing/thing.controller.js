@@ -31,6 +31,46 @@ exports.create = function(req, res) {
   });
 };
 
+
+// This is for the blog list urls, the request passes in an array of 
+// articles from a particular blog
+exports.createRss = function(req, res) {
+
+  var array = req.body.feedArray;
+  var sendResponseBack = false;
+  var messagesArray = [];
+
+  for (var i = 0; i < array.length; i++) {
+    var feedObject = array[i];
+    var media, url, title, description;
+    var message = {};
+    message.mediaType = "rssFeed";
+    message.media = "";
+    message.url = feedObject.link;
+    message.title = feedObject.title;
+    message.description = feedObject.contentSnippet;
+    message.email = 'mike@abc.com';
+    message.createTime = Date.now();
+    message.createDate = new Date();
+    messagesArray.push(message);
+  
+  }
+    var onBulkInsert = function(err, myDocuments) {
+      if (err) {
+        return handleError(res, err); 
+      }
+      else {
+        res.send(200);
+        console.log('%userCount users were inserted!', myDocuments.length)
+      }
+  }
+    // does a bulk save on all the array items
+    Thing.collection.insert(messagesArray, onBulkInsert);
+    
+};
+
+
+
 // Get list of things
 exports.index = function(req, res) {
   Thing.find(function (err, things) {
