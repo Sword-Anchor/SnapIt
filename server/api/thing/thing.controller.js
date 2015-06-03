@@ -31,6 +31,31 @@ exports.create = function(req, res) {
   });
 };
 
+// This is for the blog list urls
+exports.createRss = function(req, res) {
+  console.log("Adding the RSS feed was succesful");
+  //res.send(200);
+  var array = req.body.feedArray;
+  console.log(req.body.feedArray);
+  for (var i = 0; i < array.length; i++) {
+    var feedObject = array[i];
+    var media, url, title, description;
+    var message = new Thing();
+    message.mediaType = "rssFeed";
+    message.media = "";
+    message.url = feedObject.link;
+    message.title = feedObject.title;
+    message.description = feedObject.contentSnippet;
+    message.email = 'ratracegrad@gmail.com';
+    message.createTime = Date.now();
+    message.createDate = new Date();
+    message.save(function () {
+      res.send(200);
+   });
+  }
+};
+
+
 // Get list of things
 exports.index = function(req, res) {
   Thing.find({email:req.query.email},function (err, things) {
@@ -47,6 +72,16 @@ exports.show = function(req, res) {
     return res.json(thing);
   });
 };
+
+
+// Creates a new thing in the DB.
+// exports.create = function(req, res) {
+//   Thing.create(req.body, function(err, thing) {
+//     if(err) { return handleError(res, err); }
+//     return res.json(201, thing);
+//   });
+// };
+
 
 // Updates an existing thing in the DB.
 exports.update = function(req, res) {
