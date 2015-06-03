@@ -5,19 +5,14 @@ angular.module('snapItApp')
     function ($scope, FeedService, FeedList, $http, $cookieStore, User, Auth){
     $scope.feedUrls = [];
     $scope.ObjectUrls = {};
-    debugger;
     $scope.userEmail = Auth.getUserEmail();
 
     $scope.addFeedToDatabase = function(feedArray) {
-      debugger;
-      console.log(feedArray);
-      $http.post('api/things/addUrls', {feedArray: feedArray}).
+      $http.post('api/things/addFeeds', {feedArray: feedArray}).
           success(function(data, status, headers, config) {
-            debugger;
             
           }).
            error(function(data, status, headers, config) {
-            debugger;
           
            });
     };
@@ -27,13 +22,11 @@ angular.module('snapItApp')
      passed to updateFeed so that a list of feed entries can be populated in the database
     */
     $scope.addUrls = function(url) {
-      debugger;
-
+      $scope.feedUrl = ""; 
       $(".feeds").empty();
       var currentUrl = url;
       
       $http.get('/api/users/me').success(function(user) {
-          debugger;
           $scope.returnedUrls = user.rssUrls;
           var found = false;
             for (var i = 0; i < $scope.returnedUrls.length; i++) {
@@ -43,7 +36,6 @@ angular.module('snapItApp')
               }
          if (!found){
           $scope.feedUrls.push(url);
-          debugger;
           $scope.updateFeed(url, $scope.userEmail);     
          }
          
@@ -54,14 +46,14 @@ angular.module('snapItApp')
 
       FeedList.get($scope.feedUrls, email)
         .then (function (data) {
-          debugger;
-          $scope.addFeedToDatabase(data.entries);    
+          $scope.addFeedToDatabase(data.entries); 
+
         });
     };
    
   }])
 
-  .service('FeedService',['$http', "$q",function($http, $q){  
+    .service('FeedService',['$http', "$q",function($http, $q){  
      return { 
         parseFeed: function (url) { 
            return $http.jsonp('https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=5&q=' + url +
@@ -71,7 +63,7 @@ angular.module('snapItApp')
 
   }])
 
-  .service('FeedList', ['$rootScope', 'FeedService', '$q', '$http',
+    .service('FeedList', ['$rootScope', 'FeedService', '$q', '$http',
      function ($rootScope, FeedService, $q, $http) {
     var feedVar;
     var feeds = [];
@@ -87,20 +79,16 @@ angular.module('snapItApp')
       FeedService.parseFeed(url)
         .then(function(res){
           
-          debugger;
           
         $http.post('api/users/addUrl', {url: url, email:email}).
-          success(function(data, status, headers, config) {
-            debugger;
+           success(function(data, status, headers, config) {
             
-          }).
+           }).
            error(function(data, status, headers, config) {
-            debugger;
           
            });
-          debugger;
-          var feed = res.data.responseData.feed;
-          deferred.resolve(feed);
+        var feed = res.data.responseData.feed;
+        deferred.resolve(feed);
           // feedVar = res.data.responseData.feed;
           // feeds.push(feedVar);
           // console.log(feedVar);
@@ -111,7 +99,6 @@ angular.module('snapItApp')
         //   console.log("Invalid Url");
         // })                   
       }
-        debugger;
         return deferred.promise;
     };
 }]);
