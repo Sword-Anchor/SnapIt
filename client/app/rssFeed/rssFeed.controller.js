@@ -12,8 +12,8 @@ angular.module('snapItApp')
           success(function(data, status, headers, config) {
             
           }).
-           error(function(data, status, headers, config) {
-          
+          error(function(data, status, headers, config) {
+            
            });
     };
     /*
@@ -46,6 +46,7 @@ angular.module('snapItApp')
 
       FeedList.get($scope.feedUrls, email)
         .then (function (data) {
+          
           $scope.addFeedToDatabase(data.entries); 
 
         });
@@ -85,7 +86,7 @@ angular.module('snapItApp')
             
            }).
            error(function(data, status, headers, config) {
-          
+
            });
         var feed = res.data.responseData.feed;
         deferred.resolve(feed);

@@ -22,7 +22,7 @@ exports.create = function(req, res) {
   message.url = req.query.url;
   message.title = req.query.title;
   message.description = req.query.description;
-  message.email = 'asdf@asdf.com';
+  message.email = 'mike@abc.com';
   message.createTime = Date.now();
   message.createDate = new Date();
   message.upVotes = 0;
@@ -48,7 +48,7 @@ exports.createRss = function(req, res) {
     message.url = feedObject.link;
     message.title = feedObject.title;
     message.description = feedObject.contentSnippet;
-    message.email = 'ratracegrad@gmail.com';
+    message.email = 'mike@abc.com';
     message.createTime = Date.now();
     message.createDate = new Date();
      messagesArray.push(message);
