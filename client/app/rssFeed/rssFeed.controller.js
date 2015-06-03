@@ -8,7 +8,19 @@ angular.module('snapItApp')
     debugger;
     $scope.userEmail = Auth.getUserEmail();
 
-
+    $scope.addFeedToDatabase = function(feedArray) {
+      debugger;
+      console.log(feedArray);
+      $http.post('api/things/addUrls', {feedArray: feedArray}).
+          success(function(data, status, headers, config) {
+            debugger;
+            
+          }).
+           error(function(data, status, headers, config) {
+            debugger;
+          
+           });
+    };
     /*
      when user clicks on the loadUrl button, the users urls are fetched, and the enw url is
      compared to the urls returned from the server. If there is a new url, then it is 
@@ -35,15 +47,15 @@ angular.module('snapItApp')
           $scope.updateFeed(url, $scope.userEmail);     
          }
          
-      });
-      };
+       });
+    };
 
     $scope.updateFeed =  function (url, email){
 
       FeedList.get($scope.feedUrls, email)
         .then (function (data) {
           debugger;
-          $scope.feeds = data;
+          $scope.addFeedToDatabase(data.entries);    
         });
     };
    
@@ -86,14 +98,13 @@ angular.module('snapItApp')
             debugger;
           
            });
-
-        
-
           debugger;
-          feedVar = res.data.responseData.feed;
-          feeds.push(feedVar);
-          console.log(feedVar);
-          deferred.resolve(feeds); 
+          var feed = res.data.responseData.feed;
+          deferred.resolve(feed);
+          // feedVar = res.data.responseData.feed;
+          // feeds.push(feedVar);
+          // console.log(feedVar);
+          // deferred.resolve(feeds); 
 
         })
         // .error(function(response){
