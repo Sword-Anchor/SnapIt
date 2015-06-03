@@ -94,6 +94,32 @@ exports.me = function(req, res, next) {
 };
 
 /**
+* Adds a url to the users database
+*/
+exports.addUrl = function(req, res, next) {
+  console.log("Inside add URL function of the server");
+  console.log(req.body);
+  var userEmail = req.body.email;
+  
+  //res.send(200);
+  //console.log(userId);
+   User.findOne({email:userEmail}, function (err, user) {
+      if (!user.rssUrls){
+        user.rssUrls = [];
+      }
+      user.rssUrls.push(req.body.url);
+      user.save(function(err) {
+        if (err) {
+          return validationError(res, err);
+        }
+        console.log("Res was succesful");
+        res.send(200);
+      });
+   });
+};
+
+
+/**
  * Authentication callback
  */
 exports.authCallback = function(req, res, next) {
