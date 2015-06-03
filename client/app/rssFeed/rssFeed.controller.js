@@ -1,11 +1,13 @@
 'use strict';
 
 angular.module('snapItApp')
-  .controller("RssCtrl", ['$scope','FeedService', 'FeedList', '$http', 
-    function ($scope,FeedService,FeedList,$http){
+  .controller("RssCtrl", ['$scope','FeedService', 'FeedList', '$http', '$cookieStore', 'User', 'Auth',
+    function ($scope, FeedService, FeedList, $http, $cookieStore, User, Auth){
     $scope.feedUrls = [];
     $scope.ObjectUrls = {};
     debugger;
+    $scope.userEmail = Auth.getUserEmail();
+
 
     /*
      when user clicks on the loadUrl button, the users urls are fetched, and the enw url is
@@ -30,31 +32,15 @@ angular.module('snapItApp')
          if (!found){
           $scope.feedUrls.push(url);
           debugger;
-          $scope.updateFeed(url);     
+          $scope.updateFeed(url, $scope.userEmail);     
          }
          
       });
       };
 
-    $scope.updateFeed =  function (url){
-      debugger;
-      
-      debugger;
-      $http.post('api/users/addUrl', {url: url}).
-        success(function(data, status, headers, config) {
-          debugger;
-          // this callback will be called asynchronously
-          // when the response is available
-        }).
-        error(function(data, status, headers, config) {
-          debugger;
-          // called asynchronously if an error occurs
-          // or server returns response with an error status.
-        });
+    $scope.updateFeed =  function (url, email){
 
-
-
-      FeedList.get($scope.feedUrls)
+      FeedList.get($scope.feedUrls, email)
         .then (function (data) {
           debugger;
           $scope.feeds = data;
@@ -81,7 +67,7 @@ angular.module('snapItApp')
     console.log("loading feeds...");
 
 
-    this.get = function(urls) {
+    this.get = function(urls, email) {
     //var feeds = [];
     for (var i=0; i<urls.length; i++) {
       var url = urls[i];
@@ -91,21 +77,16 @@ angular.module('snapItApp')
           
           debugger;
           
-          // make a post request to save the url
-          // $http.post('/api/users/addUrl', {
-          //   url: thisUrl
-          // })
-          //   .success(function(data) {
-          //     debugger;
-          //    console.log("Succesgully added the url");
+        $http.post('api/users/addUrl', {url: url, email:email}).
+          success(function(data, status, headers, config) {
+            debugger;
+            
+          }).
+           error(function(data, status, headers, config) {
+            debugger;
           
-          //   })
-          //   .error(function(data) {
-          //     debugger;
-          //     defer.reject("failed to do a post request");
-          //     console.log(data);
-          
-          //   });
+           });
+
         
 
           debugger;
