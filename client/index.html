@@ -14,6 +14,7 @@
     <!-- build:css(client) app/vendor.css -->
       <!-- bower:css -->
       <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+      <link rel="stylesheet" href="bower_components/toastr/toastr.css" />
       <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
       <!-- endbower -->
     <!-- endbuild -->
@@ -58,6 +59,8 @@
       <!-- bower:js -->
       <script src="bower_components/jquery/dist/jquery.js"></script>
       <script src="bower_components/angular/angular.js"></script>
+      <script src="bower_components/aws-sdk/dist/aws-sdk.js"></script>
+      <script src="bower_components/toastr/toastr.js"></script>
       <script src="bower_components/angular-resource/angular-resource.js"></script>
       <script src="bower_components/angular-cookies/angular-cookies.js"></script>
       <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
@@ -85,6 +88,7 @@
           <script src="app/main/main.controller.js"></script>
           <script src="app/main/main.js"></script>
           <script src="app/rssFeed/rssFeed.controller.js"></script>
+          <script src="app/s3Upload/s3Upload.controller.js"></script>
           <script src="components/angulargrid/angulargrid.js"></script>
           <script src="components/auth/auth.service.js"></script>
           <script src="components/auth/imageService.js"></script>

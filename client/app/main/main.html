@@ -22,7 +22,30 @@
       </div>
     </div>
 
+  <div ng-controller="UploadController">
 
+      <!-- The Upload Form -->
+      <div class="col-md-8">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"> Upload The File</h3>
+          </div>
+            <input class="bottom-marg-15" type="file" name="file" file></input>
+            <!-- Progress Bar -->
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="{{ uploadProgress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ uploadProgress }}%;">
+                {{ uploadProgress == 0 ? '' : uploadProgress + '%' }}
+              </div>
+            </div>
+            <a class="btn btn-primary btn-block btn-lg" ng-click="upload()">Upload</a>
+          </div>
+        </div>
+      </div>
+    <div class="row">
+
+    </div>
+  </div>
+  </div>
 
   <ul class="dynamic-grid angular-grid" angular-grid="pics" grid-width="300" gutter-size="10" angular-grid-id="gallery" refresh-on-img-load="true" >
     <li data-ng-repeat="pic in pics" class="grid" ng-clock>

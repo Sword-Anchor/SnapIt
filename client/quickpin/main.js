@@ -3,17 +3,16 @@ function snapIt(info, tab) {
       var description = tab.title.substr(0, 500);
       var sUrl = info.srcUrl;
       var server = 'http://localhost:9000';
-
       if (info.selectionText) {
         // The user selected some text, put this in the message.
-        var url = server + "/api/things/?media=" + 
+        var url = server + "/api/things/?media=" +
           "&url=" + encodeURIComponent(tab.url) +
           "&title=" + encodeURIComponent(tab.title) +
           "&description=" + encodeURI(info.selectionText) +
           "&mediaType=selection";
       } else if (info.mediaType === 'image') {
         //use right clicked on an image
-        var url = server + "/api/things/?media=" + encodeURIComponent(sUrl) + 
+        var url = server + "/api/things/?token="+xCookie+"media=" + encodeURIComponent(sUrl) +
           "&url=" + encodeURIComponent(tab.url) +
           "&title=" + encodeURIComponent(tab.title) +
           "&description=" + encodeURIComponent(description) +

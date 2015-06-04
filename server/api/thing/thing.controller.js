@@ -13,9 +13,9 @@ var _ = require('lodash');
 var Thing = require('./thing.model');
 
 // Save from chrome extension snapIt
+
 exports.create = function(req, res) {
   var media, url, title, description;
-
   var message = new Thing();
   message.mediaType = req.query.mediaType;
   message.media = req.query.media;

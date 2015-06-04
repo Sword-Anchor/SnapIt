@@ -14,6 +14,7 @@ var validateJwt = expressJwt({ secret: config.secrets.session });
  * Otherwise returns 403
  */
 function isAuthenticated() {
+  console.log("in Auth service isAuthenticated");
   return compose()
     // Validate jwt
     .use(function(req, res, next) {
@@ -43,6 +44,8 @@ function isAuthenticated() {
  * Checks if the user role meets the minimum requirements of the route
  */
 function hasRole(roleRequired) {
+  console.log("in Auth service roleRequired");
+
   if (!roleRequired) throw new Error('Required role needs to be set');
 
   return compose()
@@ -61,6 +64,8 @@ function hasRole(roleRequired) {
  * Returns a jwt token signed by the app secret
  */
 function signToken(id) {
+  console.log("in Auth service signToken");
+
   return jwt.sign({ _id: id }, config.secrets.session, { expiresInMinutes: 60*5 });
 }
 
@@ -68,6 +73,8 @@ function signToken(id) {
  * Set token cookie directly for oAuth strategies
  */
 function setTokenCookie(req, res) {
+  console.log("in Auth service setTokenCookie");
+
   if (!req.user) return res.json(404, { message: 'Something went wrong, please try again.'});
   var token = signToken(req.user._id, req.user.role);
   res.cookie('token', JSON.stringify(token));
