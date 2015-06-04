@@ -1,0 +1,10 @@
+<div ng-app="snapItApp" ng-controller="RssCtrl">
+     <form role="form" name="feedForm" nosubmit="">
+        <div class="urlEnter">Enter url to follow</div>
+         <input class="form-control" required="" type='url' ng-model="feedUrl"/> 
+         <button id="loadButton" class="btn btn-default" ng-click="addUrls(feedUrl)" ng-disabled="feedForm.$invalid">Load Feed </button>
+    </form>
+                  <!-- <br/>
+                   <h1> <a href="{{feed.link}}" target="_blank"> {{feed.title}}</a></h1>
+                   <p> {{feed.description}}</p>   -->
+</div>

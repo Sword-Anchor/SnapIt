@@ -143,6 +143,7 @@ angular.module('snapItApp')
         return $cookieStore.get('token');
       },
 
+
       /**
        * Get logged in user email
        */
