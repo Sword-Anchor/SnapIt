@@ -5,10 +5,9 @@ exports.setup = function (User, config) {
   passport.use(new FacebookStrategy({
       clientID: config.facebook.clientID,
       clientSecret: config.facebook.clientSecret,
-      callbackURL: config.facebook.callbackURL,
+      callbackURL: config.facebook.callbackURL
     },
     function(accessToken, refreshToken, profile, done) {
-      console.log('in callback', profile);
       User.findOne({
         'facebook.id': profile.id
       },
@@ -17,28 +16,22 @@ exports.setup = function (User, config) {
           return done(err);
         }
         if (!user) {
-          console.log("no user found");
           user = new User({
             name: profile.displayName,
-            email: 'thomas@gmail.com',
+            email: profile.emails[0].value,
             role: 'user',
             username: profile.username,
             provider: 'facebook',
             facebook: profile._json
           });
-          console.log("created new user, about to save");
           user.save(function(err) {
-            if (err) {
-              console.log(err);
-              done(err);
-            }
-            return done(null, user);
+            if (err) done(err);
+            return done(err, user);
           });
         } else {
-          return done(null, user);
+          return done(err, user);
         }
       })
     }
   ));
-  console.log("end of setup");
 };

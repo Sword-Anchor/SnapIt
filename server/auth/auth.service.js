@@ -21,15 +21,11 @@ function isAuthenticated() {
       if(req.query && req.query.hasOwnProperty('access_token')) {
         req.headers.authorization = 'Bearer ' + req.query.access_token;
       }
-      console.log("about to validateJwt");
       validateJwt(req, res, next);
-      console.log("validateJwt worked");
     })
     // Attach user to request
     .use(function(req, res, next) {
-      console.log("about to look for user");
       User.findById(req.user._id, function (err, user) {
-        console.log("error", err, "user", user);
         if (err) return next(err);
         if (!user) return res.send(401);
 
