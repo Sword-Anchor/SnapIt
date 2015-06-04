@@ -97,8 +97,6 @@
   width: 100%;
   float: left
 }
-
-
 #searchForm .icon-search {
   position: absolute;
   right: 10px;
@@ -156,4 +154,3 @@
   font-size: 16px;
   color: 1e1e1e;
 }
-
