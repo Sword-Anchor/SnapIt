@@ -22,7 +22,7 @@ exports.create = function(req, res) {
   message.url = req.query.url;
   message.title = req.query.title;
   message.description = req.query.description;
-  message.email = 'mike@abc.com';
+  message.email = 'asdf@asdf.com';
   message.createTime = Date.now();
   message.createDate = new Date();
   message.upVotes = 0;
@@ -30,49 +30,6 @@ exports.create = function(req, res) {
     res.send(req.body);
   });
 };
-
-// This is for the blog list urls
-exports.createRss = function(req, res) {
-  console.log("Inside createRss function")
-
-  var array = req.body.feedArray;
-  var sendResponseBack = false;
-  var messagesArray = [];
-
-  for (var i = 0; i < array.length; i++) {
-    var feedObject = array[i];
-    var media, url, title, description;
-    var message = {};
-    message.mediaType = "rssFeed";
-    message.media = "";
-    message.url = feedObject.link;
-    message.title = feedObject.title;
-    message.description = feedObject.contentSnippet;
-    message.email = 'mike@abc.com';
-    message.createTime = Date.now();
-    message.createDate = new Date();
-     messagesArray.push(message);
-    if (i === array.length - 1){
-      sendResponseBack = true;
-    }
-  
-  }
-    var onBulkInsert = function(err, myDocuments) {
-      if (err) {
-        console.log("the documents were not inserted");
-        console.log("Error is :" + err);
-         return handleError(res, err); 
-      }
-      else {
-       res.send(200);
-       console.log('%userCount users were inserted!', myDocuments.length)
-      }
-  }
-    console.log("Messages array is " + messagesArray);
-    Thing.collection.insert(messagesArray, onBulkInsert);
-    
-};
-
 
 // Get list of things
 exports.index = function(req, res) {
@@ -90,16 +47,6 @@ exports.show = function(req, res) {
     return res.json(thing);
   });
 };
-
-
-// Creates a new thing in the DB.
-// exports.create = function(req, res) {
-//   Thing.create(req.body, function(err, thing) {
-//     if(err) { return handleError(res, err); }
-//     return res.json(201, thing);
-//   });
-// };
-
 
 // Updates an existing thing in the DB.
 exports.update = function(req, res) {
