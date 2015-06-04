@@ -11,9 +11,7 @@ angular.module('snapItApp')
     $scope.searchTxt = '';
     $scope.searchDate = true;
     $scope.isCollapsed = false;
-
     $scope.userEmail = Auth.getUserEmail();
-
 
     $http.get('/api/things/getItems/?email='+ $scope.userEmail).success(function(pics) {
       $scope.pics = pics;
@@ -42,7 +40,7 @@ angular.module('snapItApp')
     };
 
     $scope.isSelection = function(mediaType) {
-      if (mediaType === 'selection' || mediaType === 'rssFeed') {
+      if (mediaType === 'selection') {
         return true;
       }
       return false;
@@ -57,13 +55,6 @@ angular.module('snapItApp')
 
     $scope.isLink = function(mediaType) {
       if (mediaType === 'links') {
-        return true;
-      }
-      return false;
-    };
-
-    $scope.isRssFeed = function(mediaType) {
-      if (mediaType === 'rssFeed') {
         return true;
       }
       return false;
