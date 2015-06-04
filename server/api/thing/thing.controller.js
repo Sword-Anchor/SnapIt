@@ -22,7 +22,7 @@ exports.create = function(req, res) {
   message.url = req.query.url;
   message.title = req.query.title;
   message.description = req.query.description;
-  message.email = 'asdf@asdf.com';
+  message.email = 'ratracegrad@gmail.com';
   message.createTime = Date.now();
   message.createDate = new Date();
   message.upVotes = 0;
@@ -33,7 +33,7 @@ exports.create = function(req, res) {
 
 // Get list of things
 exports.index = function(req, res) {
-  Thing.find({email:req.query.email},function (err, things) {
+  Thing.find(function (err, things) {
     if(err) { return handleError(res, err); }
     return res.json(200, things);
   });
