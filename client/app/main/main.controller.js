@@ -6,21 +6,22 @@ angular.module('snapItApp')
     $scope.pics = [];
     $scope.searchTxt = '';
     $scope.searchDate = true;
+    $scope.searchVotes = true;
     $scope.isCollapsed = false;
 
     $http.get('/api/things/getItems').success(function(pics) {
       $scope.pics = pics;
       socket.syncUpdates('thing', $scope.pics);
-      $scope.pics.forEach(function(item){
-        item.mediaType = item.mediaType;
-        item.media = item.media;
-        item.url = item.url;
-        item.title = item.title;
-        item.description = item.description;
-        item.email = item.email;
-        item.createDate = item.createDate;
+      // $scope.pics.forEach(function(item){
+      //   item.mediaType = item.mediaType;
+      //   item.media = item.media;
+      //   item.url = item.url;
+      //   item.title = item.title;
+      //   item.description = item.description;
+      //   item.email = item.email;
+      //   item.createDate = item.createDate;
 
-      });
+      // });
 
       //sort in ascending order
       $scope.searchDate = false;
@@ -60,16 +61,16 @@ angular.module('snapItApp')
         $http.get('/api/things/getItems').success(function(pics) {
           $scope.pics = pics;
           socket.syncUpdates('thing', $scope.pics);
-          $scope.pics.forEach(function(item){
-            item.mediaType = item.mediaType;
-            item.media = item.media;
-            item.url = item.url;
-            item.title = item.title;
-            item.description = item.description;
-            item.email = item.email;
-            item.createDate = item.createDate;
+          // $scope.pics.forEach(function(item){
+          //   item.mediaType = item.mediaType;
+          //   item.media = item.media;
+          //   item.url = item.url;
+          //   item.title = item.title;
+          //   item.description = item.description;
+          //   item.email = item.email;
+          //   item.createDate = item.createDate;
 
-          });
+          // });
 
           //sort in ascending order
           $scope.searchDate = false;
@@ -84,9 +85,17 @@ angular.module('snapItApp')
     });
 
     $scope.sortByLikes = function(){
-      $scope.pics.sort(function(a,b){
-         return b.likes - a.likes;
-      });
+      if ($scope.searchVotes) {
+        $scope.pics.sort(function(a,b){
+          return a.upVotes - b.upVotes; 
+        });
+      } else {
+        $scope.pics.sort(function(a,b){
+          return b.upVotes - a.upVotes; 
+        });
+      }
+      
+      $scope.searchVotes = !$scope.searchVotes;
     };
     
     $scope.sortByTime = function(){
@@ -109,6 +118,10 @@ angular.module('snapItApp')
 
     $scope.upVote = function(thing) {
       thing.upVotes++;
+      $http.patch('/api/things/' + thing._id).success(function(){
+        $scope.searchDate = !$scope.searchDate;
+        $scope.sortByTime();
+      });
     };
     
   }]);
