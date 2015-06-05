@@ -7,7 +7,7 @@ angular.module('snapItApp')
     $scope.invite = function(form) {
       $scope.submitted = true;
       if(form.$valid) {
-        $http.post('http://localhost:9000/invite/?inviteeEmail='+$scope.inviteeEmail+'&username' + $scope.user.name)
+        $http.post('http://localhost:9000/invite/?inviteeEmail='+$scope.inviteeEmail+'&username=' + 'test')
         .then( function() {
           $scope.message = 'Invite Sent.';
         })

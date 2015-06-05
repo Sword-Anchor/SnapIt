@@ -15,6 +15,7 @@ module.exports = function(app) {
 
   app.use('/auth', require('./auth'));
 
+  app.post('/forgotpassword', require('./forgotpassword').reset);
   app.post('/invite', require('./invite').invite);
   
   app.use('/main', function(req, res, next){

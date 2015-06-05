@@ -11,7 +11,7 @@
         <div class="form-group">
           <label>Enter your friend's email here</label>
 
-          <input type="password" name="password" class="form-control" ng-model="inviteeEmail"
+          <input type="email" name="password" class="form-control" ng-model="inviteeEmail"
                  mongoose-error/>
           <p class="help-block" ng-show="form.password.$error.mongoose">
               {{ errors.other }}

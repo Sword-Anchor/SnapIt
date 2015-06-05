@@ -79,6 +79,28 @@ exports.changePassword = function(req, res, next) {
   });
 };
 
+// reset a users password:
+
+exports.resetPassword = function(email) {
+  var chars="abcdefghijklmnopqrstuvwxyz123456789"
+  var newPass=''
+
+  for (var i = 0; i < 8; i++){
+    newPass += chars.charAt(Math.floor(Math.random() * chars.length))
+  }
+  
+  User.findOne({email: email}, function (err, user) {
+    user.password = newPass;
+    user.save(function(err) {
+      if (err){
+        console.log("error saving password");
+      }
+    });
+  });
+
+  return newPass;
+};
+
 /**
  * Get my info
  */
