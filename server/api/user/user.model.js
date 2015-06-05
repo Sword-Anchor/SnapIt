@@ -17,7 +17,8 @@ var UserSchema = new Schema({
   salt: String,
   facebook: {},
   twitter: {},
-  github: {}
+  github: {},
+  rssUrls: Array
 });
 
 /**
