@@ -17,7 +17,7 @@ module.exports = function(app) {
   
   app.use('/main', function(req, res, next){
     if (auth.isAuthenticated() !== true){
-      res.redirect('http://localhost:9000/login')
+      res.redirect(process.env.DOMAIN + '/login')
     }
     else {
       next();
