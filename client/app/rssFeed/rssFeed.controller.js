@@ -8,7 +8,7 @@ angular.module('snapItApp')
     $scope.userEmail = Auth.getUserEmail();
 
     $scope.addFeedToDatabase = function(feedArray) {
-      $http.post('api/things/addFeeds', {feedArray: feedArray, email: $scope.userEmail }).
+      $http.post('api/things/addFeeds', {feedArray: feedArray}).
           success(function(data, status, headers, config) {
             
           }).
@@ -62,7 +62,7 @@ angular.module('snapItApp')
          }
       }
 
-    }])
+  }])
 
     .service('FeedList', ['$rootScope', 'FeedService', '$q', '$http',
      function ($rootScope, FeedService, $q, $http) {
@@ -73,30 +73,33 @@ angular.module('snapItApp')
 
 
     this.get = function(urls, email) {
-      for (var i=0; i<urls.length; i++) {
-        var url = urls[i];
-        FeedService.parseFeed(url)
-          .then(function(res){
+    //var feeds = [];
+    for (var i=0; i<urls.length; i++) {
+      var url = urls[i];
+      var thisUrl = url;
+      FeedService.parseFeed(url)
+        .then(function(res){
+          
+          
+        $http.post('api/users/addUrl', {url: url, email:email}).
+           success(function(data, status, headers, config) {
             
-            $http.post('api/users/addUrl', {url: url, email:email}).
-               success(function(data, status, headers, config) {
-                
-               }).
-               error(function(data, status, headers, config) {
+           }).
+           error(function(data, status, headers, config) {
 
-               });
-            var feed = res.data.responseData.feed;
-            deferred.resolve(feed);
+           });
+        var feed = res.data.responseData.feed;
+        deferred.resolve(feed);
           // feedVar = res.data.responseData.feed;
           // feeds.push(feedVar);
           // console.log(feedVar);
           // deferred.resolve(feeds); 
 
-         })
+        })
         // .error(function(response){
         //   console.log("Invalid Url");
         // })                   
-        }
+      }
         return deferred.promise;
-      };
-  }]);
+    };
+}]);
