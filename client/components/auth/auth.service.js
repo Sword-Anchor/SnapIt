@@ -148,7 +148,7 @@ angular.module('snapItApp')
        * Get logged in user email
        */
       getUserEmail: function() {
-        return currentUser['email'];
+        return currentUser.email;
       }
     };
   });
