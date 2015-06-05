@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('snapItApp')
-  .controller('MainCtrl', ['$scope', 'Auth', '$http', 'socket', '$location', function ($scope, Auth, $http, socket, $location) {
+  .controller('MainCtrl', ['$scope', 'Auth', '$http', 'socket', function ($scope, Auth, $http, socket) {
     // if (!Auth.isLoggedIn()){
     //   $location.path('/login');
     // }

@@ -1,5 +1,6 @@
 // Generated on 2015-06-01 using generator-angular-fullstack 2.0.13
 'use strict';
+'jshint loopfunc: true'
 
 module.exports = function (grunt) {
   var localConfig;
