@@ -68,9 +68,7 @@ angular.module('snapItApp')
 
 
     this.get = function(url, email) {
-    //var feeds = [];
-    //for (var i=0; i<urls.length; i++) {
-      //var url = urls[i];
+  
       FeedService.parseFeed(url)
         .then(function(res){
           
@@ -92,7 +90,6 @@ angular.module('snapItApp')
         // .error(function(response){
         //   console.log("Invalid Url");
         // })                   
-      //}
         return deferred.promise;
     };
 }]);
