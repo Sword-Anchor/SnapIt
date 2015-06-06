@@ -41,6 +41,13 @@ var all = {
     }
   },
 
+  keys:{
+    access: 'AKIAINZITVNGQBZ7GPHA',
+    secret: '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',
+    bucket: 'vini-snapit',
+    region: 'us-west-2'
+  },
+
   facebook: {
     clientID:     process.env.FACEBOOK_ID || 'id',
     clientSecret: process.env.FACEBOOK_SECRET || 'secret',

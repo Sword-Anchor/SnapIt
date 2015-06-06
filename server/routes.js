@@ -24,6 +24,18 @@ module.exports = function(app) {
     }
   });
 
+  app.use('/getAwsKeys', function(req, res){
+
+    var configKeys = {
+      access: "AKIAINZITVNGQBZ7GPHA",
+      secret: "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",
+      bucket: "vini-snapit",
+      region: "us-west-2"
+    };
+    var json = JSON.stringify(configKeys);
+    res.end(json);
+  });
+
   // All undefined asset or api routes should return a 404
   app.route('/:url(api|auth|components|app|bower_components|assets)/*')
    .get(errors[404]);
