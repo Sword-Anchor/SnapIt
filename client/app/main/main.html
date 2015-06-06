@@ -3,24 +3,45 @@
 
 <div class="container">
 
-  <div id="searchFilterWrap">
-    <form id="searchForm">
-      <input type="text" id="searchBox" placeholder="Search by title" data-ng-model="searchTxt"  data-ng-model-options="{debounce : 600}" />
-    </form>
-    <div id="sortByWrap">
+<!--   <div>
+    <div>
+      <form >
+        <input type="text" id="searchBox" placeholder="Search by title" data-ng-model="searchTxt"  data-ng-model-options="{debounce : 600}" />
+      </form>
+    </div>
+    <div  style="float: left;">
       Sort By : <i class="fa fa-calendar" ng-click="sortByTime()"></i><i class="fa fa-thumbs-up" ng-click="sortByLikes()"></i>
     </div>
-    <div id="rssField" ng-controller="MainCtrl">
-      <button id="rssButton" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">RSS</button>
-          <hr>
-       <div collapse="isCollapsed">
-            <div class="well well-lg">
-              <div ng-include="'app/rssFeed/rssFeed.html'"></div>
-           </div>
-            </div> 
-        </div>
-      </div>
+    <div  style="float: left;">
+      
     </div>
+  </div> -->
+
+  <div id="searchFilterWrap">
+    <form id="searchForm">
+      <input type="text" id="searchBox" placeholder="Search by title" data-ng-model="searchTxt" data-ng-model-options="{debounce : 600}" />
+    </form>
+    <div id="sortByWrap">
+      Sort By : <i class="fa fa-calendar" data-ng-click="sortByTime()"></i><i class="fa fa-thumbs-up" data-ng-click="sortByLikes()"></i>
+      <button class="btn btn-primary" ng-click="isCollapsed = !isCollapsed">RSS</button>
+    </div>
+    <div>
+      
+    </div>
+  </div>
+
+  <center>
+    <div id="rssField" >
+      <hr>
+      <div collapse="isCollapsed">
+        <div class="well well-lg">
+          <div ng-include="'app/rssFeed/rssFeed.html'"></div>
+        </div>
+      </div> 
+    </div>
+  </center>
+  
+
 
 
 
