@@ -22,7 +22,8 @@ exports.create = function(req, res) {
   message.url = req.query.url;
   message.title = req.query.title;
   message.description = req.query.description;
-  message.email = 'mike@abc.com';
+  //message.email = 'mike@abc.com';
+  message.email = req.query.emailAddress;
   message.createTime = Date.now();
   message.createDate = new Date();
   message.upVotes = 0;
@@ -85,15 +86,6 @@ exports.show = function(req, res) {
     return res.json(thing);
   });
 };
-
-
-// Creates a new thing in the DB.
-// exports.create = function(req, res) {
-//   Thing.create(req.body, function(err, thing) {
-//     if(err) { return handleError(res, err); }
-//     return res.json(201, thing);
-//   });
-// };
 
 
 // Updates an existing thing in the DB.

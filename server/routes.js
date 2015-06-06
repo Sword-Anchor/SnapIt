@@ -17,8 +17,21 @@ module.exports = function(app) {
 
   app.post('/forgotpassword', require('./forgotpassword').reset);
   app.post('/invite', require('./invite').invite);
-  
+ 
+  app.get('/getuser', function(req, res){
+    console.log("user", req.user);
+    if (req.user){
+      res.send(req.user);
+      res.end();
+    }
+    else {
+      res.send(undefined);
+      res.end();
+    }
+  })
+
   app.use('/main', function(req, res, next){
+    console.log(req.user);
     if (auth.isAuthenticated() !== true){
       //res.redirect(process.env.DOMAIN + '/login')
       res.redirect('/login')
