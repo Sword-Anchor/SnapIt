@@ -11,6 +11,6 @@
       "16": "icon_16.png",
       "48": "icon_48.png"
    },  
-  "permissions": [ "tabs", "contextMenus", "http://*/*", "https://*/*" ],
+  "permissions": [ "cookies","<all_urls>","tabs", "contextMenus", "http://*/*", "https://*/*" ],
   "background": { "scripts": ["main.js"] }
 }
