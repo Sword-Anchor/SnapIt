@@ -21,7 +21,7 @@ angular.module('snapItApp')
       })
       .state('forgotpassword', {
         url: '/forgotpassword',
-        templateUrl: 'app/account/forgotpassword.html',
+        templateUrl: 'app/account/forgotpassword/forgotpassword.html',
         controller: 'ForgotPasswordCtrl'
       });
   });
