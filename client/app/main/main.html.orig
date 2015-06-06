@@ -28,19 +28,20 @@
     <div>
       
     </div>
-  </div>
-
-  <center>
-    <div id="rssField" >
-      <hr>
-      <div collapse="isCollapsed">
-        <div class="well well-lg">
-          <div ng-include="'app/rssFeed/rssFeed.html'"></div>
+<<<<<<< HEAD
+    <!-- <div id="rssField" ng-controller="MainCtrl">
+      <button id="rssButton" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">RSS</button>
+          <hr>
+       <div collapse="isCollapsed">
+            <div class="well well-lg">
+            <div>Enter feed url</div>
+            <input ng-model="feedUrl">
+            <button>Load url</button>
+            </div> 
         </div>
-      </div> 
+      </div> -->
     </div>
-  </center>
-  
+
   <div ng-controller="UploadController" class="container-fluid">
     <div class="page-header no-top-marg">
 
@@ -59,6 +60,22 @@
         </div>
         <a class="btn btn-primary btn-block btn-lg" ng-click="upload()">Upload</a>
       </div>
+
+=======
+  </div>
+>>>>>>> upstream/master
+
+  <center>
+    <div id="rssField" >
+      <hr>
+      <div collapse="isCollapsed">
+        <div class="well well-lg">
+          <div ng-include="'app/rssFeed/rssFeed.html'"></div>
+        </div>
+      </div> 
+    </div>
+  </center>
+  
 
 
 

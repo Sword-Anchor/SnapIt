@@ -22,14 +22,14 @@ angular.module('snapItApp')
       AWS.config.region = $scope.region;
       var bucket = new AWS.S3({ params: { Bucket: $scope.bucket } });
       if($scope.file) {
-        //  File Size Check First and Error message
-        // improvement over that is send file chunkd irrespective of the selected size
+        //  File Size Check First and Error message the uploaded size limit is 15 mb currently
+        // improvement over that is send file in chunks irrespective of the file size
         var fileSize = Math.round(parseInt($scope.file.size));
         if (fileSize > $scope.sizeLimit) {
           toastr.error('Sorry, your attachment is too big. <br/> Maximum '  + $scope.fileSizeLabel() + ' file attachment allowed','File Too Large');
           return false;
         }
-        // Prepend Unique String To Prevent Overwrites
+
         var params = { Key: $scope.file.name, ContentType: $scope.file.type, Body: $scope.file, ServerSideEncryption: 'AES256' };
         console.log($scope.file.name);
         bucket.putObject(params, function(err, data) {

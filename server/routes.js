@@ -14,10 +14,14 @@ module.exports = function(app) {
   app.use('/api/users', require('./api/user'));
 
   app.use('/auth', require('./auth'));
+
+  app.post('/forgotpassword', require('./forgotpassword').reset);
+  app.post('/invite', require('./invite').invite);
   
   app.use('/main', function(req, res, next){
     if (auth.isAuthenticated() !== true){
-      res.redirect(process.env.DOMAIN + '/login')
+      //res.redirect(process.env.DOMAIN + '/login')
+      res.redirect('/login')
     }
     else {
       next();

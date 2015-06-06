@@ -85,74 +85,60 @@
 }
 
 #searchFilterWrap {
-  margin: 0 auto;
-  //margin-top: 50px;
-  max-width: 800px;
   overflow: hidden;
   padding-right: 300px;
+  max-width: 800px;
+  margin: 0 auto;
+  margin-bottom: 20px;
 }
 #searchForm {
-  float: left;
   position: relative;
   width: 100%;
+  float: left
 }
 #searchForm .icon-search {
-  font-size: 22px;
   position: absolute;
   right: 10px;
   top: 8px;
+  font-size: 22px
 }
 #searchBox {
+  width: 100%;
   border: 1px solid #ccc;
-  border-radius: 10px;
-  font-size: 16px;
-  height: 40px;
   outline: 0;
   padding-left: 15px;
   padding-right: 40px;
-  width: 100%;
+  border-radius: 10px;
+  font-size: 16px;
+  height: 40px
 }
 #sortByWrap {
-  float: left;
-  margin-right: -1500px;
-  padding-left: 15px;
+  float: right;
+  margin-right: -250px
 }
-#sortByWrap [class^=icon-],#sortByWrap [class*=" icon-"] {
-  background: none repeat scroll 0 0 #f7faff;
-  border-radius: 5px;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 18px;
-  height: 40px;
-  line-height: 40px;
-  margin-right: 10px;
-  text-align: center;
-  width: 40px;
-}
-
-
 #rssButton {
-  //float: right;
-  //margin-right: -295px;
+  float: right;
+  margin-right: -295px;
   width: 60px 
 }
 
 .well.well-lg {
-  //height: 100px;
+  height: 100px;
   width: 400px;
-  padding: 10px 15px;
-  //margin-right: -100px;
-  //margin-left: 400px;
+  margin-right: -100px;
+  margin-left: 400px;
 }
 
 .inputArea {
   width: 300px;
   height: 20px;
+  font-size:15px;
 }
-.form-control {
-  display: inline;
-  width: 70%;
+
+.enterFeed {
+  
 }
+
 
 #sortByWrap i {
   cursor: pointer;
@@ -163,12 +149,4 @@
   margin-right: 10px;
   text-align: center;
   width: 40px
-}
-.thumbLike,
-.trashCan {
-  padding: 0 5px;
-}
-.likeCount {
-  font-size: 16px;
-  color: 1e1e1e;
 }
