@@ -7,5 +7,5 @@ angular.module('snapItApp')
         url: '/invite',
         templateUrl: 'app/invite/invite.html',
         controller: 'InviteCtrl'
-      })
+      });
   });

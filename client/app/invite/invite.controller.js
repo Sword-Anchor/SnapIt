@@ -10,7 +10,7 @@ angular.module('snapItApp')
         $http.post('http://localhost:9000/invite/?inviteeEmail='+$scope.inviteeEmail+'&username=' + 'test') // need to replace test with user's name
         .then( function() {
           $scope.message = 'Invite Sent.';
-        })
+        });
         // .catch( function() {
         //   form.password.$setValidity('mongoose', false);
         //   $scope.errors.other = 'Incorrect password';
