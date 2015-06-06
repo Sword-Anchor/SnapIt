@@ -12,7 +12,7 @@ var transporter = nodemailer.createTransport({
 
 exports.reset = function(req, res) {
     // setup e-mail
-    newPass = user.resetPassword(req.query.email);
+    var newPass = user.resetPassword(req.query.email);
 
     var mailOptions = {
         from: 'SnapIt Team <swordanchorthesis@gmail.com>', // sender address
