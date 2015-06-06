@@ -89,7 +89,7 @@
   //margin-top: 50px;
   max-width: 800px;
   overflow: hidden;
-  padding-right: 300px;
+  padding-right: 350px;
 }
 #searchForm {
   float: left;
@@ -129,7 +129,9 @@
   text-align: center;
   width: 40px;
 }
-
+.noSpace {
+  padding: 0px;
+}
 
 #rssButton {
   //float: right;
