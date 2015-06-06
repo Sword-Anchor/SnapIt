@@ -21,7 +21,8 @@ function snapIt(info, tab) {
           "&url=" + encodeURIComponent(tab.url) +
           "&title=" + encodeURIComponent(tab.title) +
           "&description=" + encodeURI(info.selectionText) +
-          "&mediaType=selection";
+          "&mediaType=selection" +
+          "&emailAddress=" + emailAddress;
       } else if (info.mediaType === 'image') {
         //use right clicked on an image
         var url = server + "/api/things/?media=" + encodeURIComponent(sUrl) + 
@@ -36,27 +37,32 @@ function snapIt(info, tab) {
         "&url=" + encodeURIComponent(tab.url) +
         "&title=" + encodeURIComponent(tab.title) +
         "&description=" + encodeURIComponent(description) +
-        "&mediaType=video";
+        "&mediaType=video" +
+        "&emailAddress=" + emailAddress;
       } else if (info.linkUrl) {
         var url = server + "/api/things/?media=" + encodeURIComponent(info.linkUrl) +
         "&url=" + encodeURIComponent(tab.url) +
         "&title=" + encodeURIComponent(tab.title) +
-        "&mediaType=links";
+        "&mediaType=links" +
+        "&emailAddress=" + emailAddress;
       } else if (info.mediaType === 'audio') {
         var url = server + "/api/things/?media=" +
         "&url=" + encodeURIComponent(tab.url) +
         "&title=" + encodeURIComponent(tab.title) +
-        "&mediaType=audio";
+        "&mediaType=audio" +
+        "&emailAddress=" + emailAddress;
       } else if (info.pageUrl) {
         var url = server + "/api/things/?media=" +
         "&url=" + encodeURIComponent(tab.url) +
         "&title=" + encodeURIComponent(tab.title) +
-        "&mediaType=page";
+        "&mediaType=page" +
+        "&emailAddress=" + emailAddress;
       } else {
         var url = server + "/api/things/?media=" +
         "&url=" + encodeURIComponent(tab.url) +
         "&title=" + encodeURIComponent(tab.title) +
-        "&mediaType=other";
+        "&mediaType=other" +
+        "&emailAddress=" + emailAddress;
       }
       
 
