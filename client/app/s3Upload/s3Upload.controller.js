@@ -13,16 +13,11 @@ angular.module('snapItApp')
 
     $http.get('/getAwsKeys').success(function(res){
       var config = res;
-      $scope.accesskey = config['access'];
-      $scope.secretkey = config['secret'];
-      $scope.bucket = config['bucket'];
-      $scope.region = config['region'];
-      console.log($scope.accesskey);
-      console.log($scope.secretkey);
-      console.log($scope.bucket);
-      console.log($scope.region);
+      $scope.accesskey = config.access;
+      $scope.secretkey = config.secret;
+      $scope.bucket = config.bucket;
+      $scope.region = config.region;
 
-      console.log(res);
       AWS.config.update({ accessKeyId: $scope.accesskey, secretAccessKey: $scope.secretkey });
       AWS.config.region = $scope.region;
       var bucket = new AWS.S3({ params: { Bucket: $scope.bucket } });
@@ -63,7 +58,7 @@ angular.module('snapItApp')
         toastr.error('Please select a file to upload');
       }
     });
-  }
+  };
   $scope.fileSizeLabel = function() {
     // Convert Bytes To MB
     return Math.round($scope.sizeLimit / 1024 / 1024) + 'MB';
