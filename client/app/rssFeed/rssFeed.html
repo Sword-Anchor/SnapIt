@@ -1,10 +1,7 @@
 <div>
-     <form role="form" name="feedForm" nosubmit="">
-        <div class="text-left">Enter url to follow</div>
-         <input class="form-control" required="" type='url' ng-model="feedUrl"/> 
-         <button id="loadButton" class="btn btn-primary" ng-click="addUrls(feedUrl)" ng-disabled="feedForm.$invalid">Load Feed </button>
-    </form>
-                  <!-- <br/>
-                   <h1> <a href="{{feed.link}}" target="_blank"> {{feed.title}}</a></h1>
-                   <p> {{feed.description}}</p>   -->
+  <form role="form" name="feedForm" nosubmit="">
+    <div class="text-left">Enter url to follow</div>
+    <input class="form-control" required="" type='url' ng-model="feedUrl"/> 
+    &nbsp;&nbsp;<button id="loadButton" class="btn btn-primary" ng-click="addUrls(feedUrl)" ng-disabled="feedForm.$invalid">Load Feed </button>
+  </form>
 </div>

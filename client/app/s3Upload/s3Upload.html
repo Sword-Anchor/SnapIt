@@ -1,0 +1,17 @@
+
+  <div class="text-left">Upload File</div>
+
+  <div>
+    <input class="bottom-marg-15" type="file" name="file" file />
+    <!-- Progress Bar -->
+    <div class="progress">
+      <div class="progress-bar" role="progressbar" aria-valuenow="{{ uploadProgress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ uploadProgress }}%;">
+        {{ uploadProgress == 0 ? '' : uploadProgress + '%' }}
+      </div>
+    </div>
+    <!-- <a href="#" class="btn btn-primary btn-block btn-lg" ng-click="upload()">Upload</a> -->
+
+    <button id="loadButton" class="btn btn-primary btn-block btn-lg" ng-click="upload()">Upload</button>
+  </div>
+
+
