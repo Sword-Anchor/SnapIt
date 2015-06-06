@@ -27,6 +27,12 @@ angular.module('snapItApp')
       }
     };
 
+
+    // $scope.isActive = function(route) {
+    //   return route === $location.path();
+    //   // $location.path('/forgotpassword');
+    // };
+
     $scope.loginOauth = function(provider) {
       $window.location.href = '/auth/' + provider;
     };
