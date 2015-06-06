@@ -14,7 +14,9 @@
     width:100%;
     height:100%;
 }
-
+.progress {
+  margin-top: 20px;
+}
 
 .dynamic-grid{
   position: relative;
@@ -24,7 +26,6 @@
   display: block;
 }
 .grid {
-  //border: 1px solid #cccccc;
   position: absolute;
   list-style: none;
   background: #ffffff;
@@ -152,17 +153,11 @@
 }
 
 #rssButton {
-  //float: right;
-  //margin-right: -295px;
   width: 60px 
 }
-
 .well.well-lg {
-  //height: 100px;
   width: 400px;
   padding: 10px 15px;
-  //margin-right: -100px;
-  //margin-left: 400px;
 }
 
 .inputArea {

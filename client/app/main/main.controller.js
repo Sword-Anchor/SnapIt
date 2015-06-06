@@ -10,8 +10,8 @@ angular.module('snapItApp')
     $scope.pics = [];
     $scope.searchTxt = '';
     $scope.searchDate = true;
-    $scope.isCollapsed = true;
-
+    $scope.isRSSCollapsed = true;
+    $scope.isUploadCollapsed = true;
     $scope.userEmail = Auth.getUserEmail();
 
 
