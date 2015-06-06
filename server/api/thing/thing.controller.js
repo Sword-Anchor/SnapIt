@@ -22,13 +22,14 @@ exports.create = function(req, res) {
   message.url = req.query.url;
   message.title = req.query.title;
   message.description = req.query.description;
-  //message.email = 'mike@abc.com';
   message.email = req.query.emailAddress;
   message.createTime = Date.now();
   message.createDate = new Date();
   message.upVotes = 0;
+
   message.save(function () {
-    res.send(req.body);
+    //res.send(req.body);
+    res.send('you may close this window now');
   });
 };
 
