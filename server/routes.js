@@ -14,15 +14,34 @@ module.exports = function(app) {
   app.use('/api/users', require('./api/user'));
 
   app.use('/auth', require('./auth'));
-  
+
+  app.post('/forgotpassword', require('./forgotpassword').reset);
+  app.post('/invite', require('./invite').invite);
+ 
+  app.get('/getuser', function(req, res){
+    console.log("user", req.user);
+    if (req.user){
+      res.send(req.user);
+      res.end();
+    }
+    else {
+      res.send(undefined);
+      res.end();
+    }
+  })
+
   app.use('/main', function(req, res, next){
+    console.log(req.user);
     if (auth.isAuthenticated() !== true){
-      res.redirect(process.env.DOMAIN + '/login')
+      //res.redirect(process.env.DOMAIN + '/login')
+      res.redirect('/login')
     }
     else {
       next();
     }
   });
+
+  app.use('/getAwsKeys', require("./getConfig.js"));
 
   // All undefined asset or api routes should return a 404
   app.route('/:url(api|auth|components|app|bower_components|assets)/*')

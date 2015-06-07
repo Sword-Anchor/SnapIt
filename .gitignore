@@ -1,7 +1,9 @@
-node_modules
+nodenode_modules
 public
 .tmp
 .idea
 client/bower_components
 dist
 /server/config/local.env.js
+.floo
+.fooignore

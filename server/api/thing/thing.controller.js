@@ -22,18 +22,58 @@ exports.create = function(req, res) {
   message.url = req.query.url;
   message.title = req.query.title;
   message.description = req.query.description;
-  message.email = 'ratracegrad@gmail.com';
+  message.email = req.query.emailAddress;
   message.createTime = Date.now();
   message.createDate = new Date();
   message.upVotes = 0;
+
   message.save(function () {
     res.send(req.body);
+    // res.sendFile(__dirname + '/client/assets/images/snapSuccess.png');
   });
 };
 
+// This is for the blog list urls, the request passes in an array of 
+// articles from a particular blog
+exports.createRss = function(req, res) {
+
+  var array = req.body.feedArray;
+  var sendResponseBack = false;
+  var messagesArray = [];
+
+  for (var i = 0; i < array.length; i++) {
+    var feedObject = array[i];
+    var media, url, title, description;
+    var message = {};
+    message.mediaType = "rssFeed";
+    message.media = "";
+    message.url = feedObject.link;
+    message.title = feedObject.title;
+    message.description = feedObject.contentSnippet;
+    message.email = 'mike@abc.com';
+    message.createTime = Date.now();
+    message.createDate = new Date();
+    messagesArray.push(message);
+  
+  }
+    var onBulkInsert = function(err, myDocuments) {
+      if (err) {
+        return handleError(res, err); 
+      }
+      else {
+        res.send(200);
+        console.log('%userCount users were inserted!', myDocuments.length)
+      }
+  }
+    // does a bulk save on all the array items
+    Thing.collection.insert(messagesArray, onBulkInsert);
+    
+};
+
+
 // Get list of things
 exports.index = function(req, res) {
-  Thing.find(function (err, things) {
+  Thing.find({email:req.query.email},function (err, things) {
     if(err) { return handleError(res, err); }
     return res.json(200, things);
   });
@@ -48,13 +88,15 @@ exports.show = function(req, res) {
   });
 };
 
-// Updates when somebody upVotes an item
+
+// Updates an existing thing in the DB.
 exports.update = function(req, res) {
+  if(req.body._id) { delete req.body._id; }
   Thing.findById(req.params.id, function (err, thing) {
     if (err) { return handleError(res, err); }
     if(!thing) { return res.send(404); }
-    thing.upVotes++;
-    thing.save(function(err){
+    var updated = _.merge(thing, req.body);
+    updated.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.json(200, thing);
     });

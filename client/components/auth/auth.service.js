@@ -26,6 +26,7 @@ angular.module('snapItApp')
         }).
         success(function(data) {
           $cookieStore.put('token', data.token);
+          $cookieStore.put('snapit', user.email);
           currentUser = User.get();
           deferred.resolve(data);
           return cb();
@@ -46,6 +47,7 @@ angular.module('snapItApp')
        */
       logout: function() {
         $cookieStore.remove('token');
+        $cookieStore.remove('snapit');
         currentUser = {};
       },
 
@@ -141,6 +143,14 @@ angular.module('snapItApp')
        */
       getToken: function() {
         return $cookieStore.get('token');
+      },
+
+
+      /**
+       * Get logged in user email
+       */
+      getUserEmail: function() {
+        return currentUser.email;
       }
     };
   });
