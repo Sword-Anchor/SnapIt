@@ -28,8 +28,8 @@ exports.create = function(req, res) {
   message.upVotes = 0;
 
   message.save(function () {
-    //res.send(req.body);
-    res.send('you may close this window now');
+    res.send(req.body);
+    // res.sendFile(__dirname + '/client/assets/images/snapSuccess.png');
   });
 };
 

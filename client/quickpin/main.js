@@ -71,8 +71,8 @@ function snapIt(info, tab) {
           chrome.windows.create({
               url: url,
               type: "popup",
-              width: 600,
-              height: 300
+              width: 400,
+              height: 400
           });
         });
       }
