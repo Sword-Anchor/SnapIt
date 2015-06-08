@@ -10,7 +10,7 @@
                                           'has-error': form.name.$invalid && submitted }">
         <label style="color: #083858;">Name</label><br/>
 
-        <input type="text" name="name" class="form-control" ng-model="user.name"
+        <input type="text" name="name" placeholder="Enter name" class="form-control" ng-model="user.name"
                required/>
         <p class="help-block" ng-show="form.name.$error.required && submitted">
           A name is required
@@ -21,7 +21,7 @@
                                           'has-error': form.email.$invalid && submitted }">
         <label style="color: #083858;">Email</label><br/>
 
-        <input type="email" name="email" class="form-control" ng-model="user.email"
+        <input type="email" name="email" placeholder="Enter email" class="form-control" ng-model="user.email"
                required
                mongoose-error/>
         <p class="help-block" ng-show="form.email.$error.email && submitted">
@@ -39,7 +39,7 @@
                                           'has-error': form.password.$invalid && submitted }">
         <label style="color: #083858;">Password</label><br/>
 
-        <input type="password" name="password" class="form-control" ng-model="user.password"
+        <input type="password" name="password" placeholder="Enter password" class="form-control" ng-model="user.password"
                ng-minlength="3"
                required
                mongoose-error/>
