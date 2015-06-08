@@ -18,6 +18,7 @@ angular.module('snapItApp')
       $scope.bucket = config.bucket;
       $scope.region = config.region;
 
+      var AWS, toastr;
       AWS.config.update({ accessKeyId: $scope.accesskey, secretAccessKey: $scope.secretkey });
       AWS.config.region = $scope.region;
       var bucket = new AWS.S3({ params: { Bucket: $scope.bucket } });
@@ -32,7 +33,8 @@ angular.module('snapItApp')
 
         var params = { Key: $scope.file.name, ContentType: $scope.file.type, Body: $scope.file, ServerSideEncryption: 'AES256' };
         console.log($scope.file.name);
-        bucket.putObject(params, function(err, data) {
+        // bucket.putObject(params, function(err, data) {
+        bucket.putObject(params, function(err) {
           if(err) {
             toastr.error(err.message,err.code);
             return false;
@@ -71,7 +73,8 @@ angular.module('snapItApp')
       scope: {
         file: '@'
       },
-      link: function(scope, el, attrs){
+      // link: function(scope, el, attrs){
+      link: function(scope, el){
         el.bind('change', function(event){
           var files = event.target.files;
           var file = files[0];
