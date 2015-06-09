@@ -18,16 +18,10 @@ module.exports = function(app) {
   app.post('/forgotpassword', require('./forgotpassword').reset);
   app.post('/invite', require('./invite').invite);
  
-  app.get('/getuser', function(req, res){
-    console.log("user", req.user);
-    if (req.user){
-      res.send(req.user);
-      res.end();
-    }
-    else {
-      res.send(undefined);
-      res.end();
-    }
+  app.use('/successfullsnap', function(req, res){
+    var path = 'snapSuccess.png';
+    res.sendfile(path, {'root': '/Users/vincentnocera/Desktop/SnapIt/client/assets/images/'});
+    res.end();
   })
 
   app.use('/main', function(req, res, next){

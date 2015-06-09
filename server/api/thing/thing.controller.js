@@ -11,6 +11,7 @@
 
 var _ = require('lodash');
 var Thing = require('./thing.model');
+var path = require('path');
 
 // Save from chrome extension snapIt
 exports.create = function(req, res) {
@@ -26,10 +27,10 @@ exports.create = function(req, res) {
   message.createTime = Date.now();
   message.createDate = new Date();
   message.upVotes = 0;
+  console.log(__dirname + '/../.././client/assets/images/snapSuccess.png');
 
   message.save(function () {
-    res.send(req.body);
-    // res.sendFile(__dirname + '/client/assets/images/snapSuccess.png');
+    res.send('<img src="http://localhost:9000/successfullsnap">');
   });
 };
 
