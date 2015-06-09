@@ -5,10 +5,13 @@ angular.module('snapItApp')
     function ($scope, FeedService, FeedList, $http, $cookieStore, User, Auth){
     $scope.ObjectUrls = {};
     $scope.userEmail = Auth.getUserEmail();
+    $scope.errorMessage = {};
+    $scope.successMessage = {};
 
     $scope.addFeedToDatabase = function(feedArray) {
-      $http.post('api/things/addFeeds', {feedArray: feedArray}).
+      $http.post('api/things/addFeeds', {feedArray: feedArray, email: $scope.userEmail}).
           success(function(data) {
+            $scope.successMessage = 'Sucess : RSS Feed has been added';
             console.log(data);
           }).
           error(function(data) {
@@ -21,6 +24,7 @@ angular.module('snapItApp')
      passed to updateFeed so that a list of feed entries can be populated in the database
     */
     $scope.addUrls = function(url) {
+      $scope.successMessage = {};
       $scope.feedUrl = ''; 
       $('.feeds').empty();
       
@@ -30,10 +34,13 @@ angular.module('snapItApp')
             for (var i = 0; i < $scope.returnedUrls.length; i++) {
               if (url === $scope.returnedUrls[i]){
                 found = true;
+                break;
                }
               }
          if (!found){
           $scope.updateFeed(url, $scope.userEmail);     
+         } else {
+           $scope.successMessage = 'You already follow this feed';
          }
          
        });
@@ -43,9 +50,9 @@ angular.module('snapItApp')
 
       FeedList.get(url, email)
         .then (function (data) {
-          
-          $scope.addFeedToDatabase(data.entries); 
-
+             $scope.addFeedToDatabase(data.entries);   
+        }, function (result){
+            $scope.successMessage = result.message;
         });
     };
    
@@ -63,35 +70,27 @@ angular.module('snapItApp')
 
     .service('FeedList', ['$rootScope', 'FeedService', '$q', '$http',
      function ($rootScope, FeedService, $q, $http) {
-    var deferred = $q.defer();
-    console.log('loading feeds...');
-
-
-
-    this.get = function(url, email) {
-  
+     
+     this.get = function(url, email) {
+      var deferred = $q.defer();
+      
       FeedService.parseFeed(url)
         .then(function(res){
-          
-        $http.post('api/users/addUrl', {url: url, email:email}).
-           success(function(data) {
-             console.log(data);
-           }).
-           error(function(data) {
-             console.log(data);
-           });
-        var feed = res.data.responseData.feed;
-        deferred.resolve(feed);
+        if (res.data.responseData){
+          $http.post('api/users/addUrl', {url: url, email:email}).
+             success(function(data) {
+               console.log(data);
+             }).
+             error(function(data) {
+               console.log(data);
+             });
 
-          // feedVar = res.data.responseData.feed;
-          // feeds.push(feedVar);
-          // console.log(feedVar);
-          // deferred.resolve(feeds); 
-
-        });
-        // .error(function(response){
-        //   console.log("Invalid Url");
-        // })                   
+          var feed = res.data.responseData.feed;
+          deferred.resolve(feed);
+        } else {
+           deferred.reject({message : 'Invalid Url. Make sure to enter a valid RSS url'});
+        } 
+        });              
         return deferred.promise;
     };
 }]);
