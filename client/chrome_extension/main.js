@@ -73,6 +73,10 @@ function snapIt(info, tab) {
               type: "popup",
               width: 400,
               height: 400
+          }, function(window){
+            setTimeout(function(){
+              chrome.windows.remove(window.id);
+            }, 3000);
           });
         });
       }
