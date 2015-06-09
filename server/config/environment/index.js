@@ -42,10 +42,10 @@ var all = {
   },
 
   keys:{
-    access: 'AKIAINZITVNGQBZ7GPHA',
-    secret: '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',
-    bucket: 'vini-snapit',
-    region: 'us-west-2'
+    access: process.env.access,
+    secret: process.env.secret,
+    bucket: process.env.bucket,
+    region: process.env.region
   },
 
   facebook: {
