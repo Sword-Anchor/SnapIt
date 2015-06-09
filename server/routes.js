@@ -19,8 +19,8 @@ module.exports = function(app) {
   app.post('/invite', require('./invite').invite);
  
   app.use('/successfullsnap', function(req, res){
-    var path = 'snapSuccess.png';
-    res.sendfile(path, {'root': '/Users/vincentnocera/Desktop/SnapIt/client/assets/images/'});
+    console.log(__dirname + '/api/thing/snapSuccess.png');
+    res.sendfile(__dirname + '/api/thing/snapSuccess.png');
     res.end();
   })
 
