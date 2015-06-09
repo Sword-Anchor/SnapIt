@@ -18,16 +18,16 @@ angular.module('snapItApp')
     $http.get('/api/things/getItems/?email='+ $scope.userEmail).success(function(pics) {
       $scope.pics = pics;
       socket.syncUpdates('thing', $scope.pics);
-      $scope.pics.forEach(function(item){
-        item.mediaType = item.mediaType;
-        item.media = item.media;
-        item.url = item.url;
-        item.title = item.title;
-        item.description = item.description;
-        item.email = item.email;
-        item.createDate = item.createDate;
+      // $scope.pics.forEach(function(item){
+      //   item.mediaType = item.mediaType;
+      //   item.media = item.media;
+      //   item.url = item.url;
+      //   item.title = item.title;
+      //   item.description = item.description;
+      //   item.email = item.email;
+      //   item.createDate = item.createDate;
 
-      });
+      // });
 
       //sort in ascending order
       $scope.searchDate = false;
@@ -104,6 +104,8 @@ angular.module('snapItApp')
     };
     
     $scope.sortByTime = function(){
+      console.log('sortByTime ' + $scope.searchDate);
+
       if ($scope.searchDate) { //sort in recent first
         $scope.pics.sort(function(a,b){
           return a.createTime - b.createTime; 
@@ -123,6 +125,11 @@ angular.module('snapItApp')
 
     $scope.upVote = function(thing) {
       thing.upVotes++;
+      $http.patch('/api/things/' + thing._id);
+
+      //$scope.searchDate = !$scope.searchDate;
+      $scope.sortByTime();
+      $scope.sortByTime();
     };
     
   }]);

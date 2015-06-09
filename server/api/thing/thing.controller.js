@@ -55,6 +55,7 @@ exports.createRss = function(req, res) {
     message.email = email;
     message.createTime = Date.now();
     message.createDate = new Date();
+    message.upVotes = 0;
     messagesArray.push(message);
   
   }
@@ -91,14 +92,13 @@ exports.show = function(req, res) {
 };
 
 
-// Updates an existing thing in the DB.
+// updates upVote count when somebody upVotes an item
 exports.update = function(req, res) {
-  if(req.body._id) { delete req.body._id; }
   Thing.findById(req.params.id, function (err, thing) {
     if (err) { return handleError(res, err); }
     if(!thing) { return res.send(404); }
-    var updated = _.merge(thing, req.body);
-    updated.save(function (err) {
+    thing.upVotes++;
+    thing.save(function(err){
       if (err) { return handleError(res, err); }
       return res.json(200, thing);
     });
