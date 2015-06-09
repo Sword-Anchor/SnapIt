@@ -4,5 +4,6 @@
         <div class="urlEnter">Enter url to follow</div>
          <input class="form-control" required="" type='url' ng-model="feedUrl"/> 
          <button id="loadButton" class="btn btn-prmary" ng-click="addUrls(feedUrl)" ng-disabled="feedForm.$invalid">Load Feed </button>
+         <p ng-if='successMessage.length > 0' class="help-block">{{ successMessage }}</p>
     </form>
 </div>
