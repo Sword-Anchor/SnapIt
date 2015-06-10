@@ -1,6 +1,6 @@
 # SnapIt
 
-> Content is too scattered on the Internet. Every day we find compelling content on numerous wesites and blogs. Unfortunately there is no way to save the content so that it can be viewed later.
+> Content is too scattered on the Internet. Every day we find compelling content on numerous websites and blogs. Unfortunately there is no way to save the content so that it can be viewed later.
 
 > That is why we created SnapIt.
 ![SnapIt Logo](/screenshots/Snapit-logo-blue.png?raw=true "SnapIt Logo")
