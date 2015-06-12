@@ -9,8 +9,6 @@ angular.module('snapItApp')
   var url = 'https://api.flickr.com/services/feeds/photos_public.gne?format=json&jsoncallback=JSON_CALLBACK';
   $http.jsonp(url).success(
     function (data) {
-//          imageService.loadImages().then(function(data){
-      console.log(data.items);
       data.items.forEach(function (obj) {
         var desc = obj.description,
           width = desc.match(/width="(.*?)"/)[1],
@@ -20,7 +18,6 @@ angular.module('snapItApp')
         obj.actualWidth = width;
       });
       pics = data.items;
-      console.log('here in pics');
     });
 
   return { pics:pics};

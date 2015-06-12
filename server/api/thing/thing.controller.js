@@ -27,10 +27,9 @@ exports.create = function(req, res) {
   message.createTime = Date.now();
   message.createDate = new Date();
   message.upVotes = 0;
-  console.log(__dirname + '/../.././client/assets/images/snapSuccess.png');
-
+  //successfullsnap = __dirname + '/../.././client/assets/images/snapSuccess.png'
   message.save(function () {
-    res.send('<img src="http://localhost:9000/successfullsnap">');
+    res.send('<img src="http://localhost:9000/snapSuccess.png">');
   });
 };
 
@@ -65,7 +64,6 @@ exports.createRss = function(req, res) {
       }
       else {
         res.send(200);
-        console.log('%userCount users were inserted!', myDocuments.length)
       }
   }
     // does a bulk save on all the array items

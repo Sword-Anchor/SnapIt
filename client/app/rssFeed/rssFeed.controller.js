@@ -12,7 +12,6 @@ angular.module('snapItApp')
       $http.post('api/things/addFeeds', {feedArray: feedArray, email: $scope.userEmail}).
           success(function(data) {
             $scope.successMessage = 'Sucess : RSS Feed has been added';
-            console.log(data);
           }).
           error(function(data) {
             console.log(data);
