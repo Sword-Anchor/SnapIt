@@ -19,15 +19,12 @@ module.exports = function(app) {
   app.post('/invite', require('./invite').invite);
  
   app.use('/successfullsnap', function(req, res){
-    console.log(__dirname + '/api/thing/snapSuccess.png');
     res.sendfile(__dirname + '/api/thing/snapSuccess.png');
     res.end();
   })
 
   app.use('/main', function(req, res, next){
-    console.log(req.user);
     if (auth.isAuthenticated() !== true){
-      //res.redirect(process.env.DOMAIN + '/login')
       res.redirect('/login')
     }
     else {

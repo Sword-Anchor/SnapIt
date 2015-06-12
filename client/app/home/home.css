@@ -156,7 +156,7 @@ body {
 }
 @media (min-width: 992px) {
     .section.section-hero .outer .inner {
-        -webkit-animation: groove 10s infinite alternate ease-in-out;
+        webkit-animation: groove 10s infinite alternate ease-in-out;
         animation: groove 10s infinite alternate ease-in-out;
         background: url('/assets/images/header-overlay.png') 50% 0 no-repeat;
         background-size: auto 100%;

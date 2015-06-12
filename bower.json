@@ -1,5 +1,5 @@
 {
-  "name": "snapit",
+  "name": "SnapIt",
   "version": "0.0.0",
   "dependencies": {
     "angular": ">=1.2.*",

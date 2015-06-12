@@ -32,8 +32,6 @@ angular.module('snapItApp')
         }
 
         var params = { Key: $scope.file.name, ContentType: $scope.file.type, Body: $scope.file, ServerSideEncryption: 'AES256' };
-        console.log($scope.file.name);
-        // bucket.putObject(params, function(err, data) {
         bucket.putObject(params, function(err) {
           if(err) {
             toastr.error(err.message,err.code);

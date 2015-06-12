@@ -1,8 +1,6 @@
 function snapIt(info, tab) {
-    // chrome.extension.getBackgroundPage().console.log(chrome.cookies.getAll());
     var emailAddress = '';
     chrome.cookies.getAll({domain: "localhost", name: 'snapit'}, function(cookies){
-      console.log(cookies);
       if (cookies.length > 0) {
         emailAddress = cookies[0].value;
         emailAddress = emailAddress.replace(/%22/g, '');
@@ -71,8 +69,8 @@ function snapIt(info, tab) {
           chrome.windows.create({
               url: url,
               type: "popup",
-              width: 400,
-              height: 400
+              width: 440,
+              height: 460
           }, function(window){
             setTimeout(function(){
               chrome.windows.remove(window.id);

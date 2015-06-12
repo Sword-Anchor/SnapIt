@@ -104,8 +104,6 @@ angular.module('snapItApp')
     };
     
     $scope.sortByTime = function(){
-      console.log('sortByTime ' + $scope.searchDate);
-
       if ($scope.searchDate) { //sort in recent first
         $scope.pics.sort(function(a,b){
           return a.createTime - b.createTime; 
